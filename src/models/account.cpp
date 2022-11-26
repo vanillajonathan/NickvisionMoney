@@ -360,6 +360,8 @@ bool Account::exportAsPDF(const std::string& path) const
 {
     bool success{ true };
     HPDF_Doc pdf{ HPDF_New([](HPDF_STATUS, HPDF_STATUS, void* data){ *reinterpret_cast<bool*>(data) = false; }, &success) };
+    HPDF_Page page1{ HPDF_AddPage(pdf) };
+    HPDF_Page_SetSize(page1, HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT);
     HPDF_SaveToFile(pdf, path.c_str());
     HPDF_Free(pdf);
     return success;
