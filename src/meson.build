@@ -59,6 +59,6 @@ sources = files('main.cpp',
 		'ui/views/shortcutsdialog.cpp')
 
 resources = files('resources/org.nickvision.money.svg', 'resources/org.nickvision.money-devel.svg')
-resources_symbolic = files('resources/org.nickvision.money-symbolic.svg')
+resources_symbolic = files('resources/org.nickvision.money-symbolic.svg', 'resources/org.nickvision.money-symbolic-green.jpg')
 resources_actions = files('resources/bank-symbolic.svg', 'resources/larger-brush-symbolic.svg', 'resources/money-none-symbolic.svg', 'resources/wallet2-symbolic.svg')
 gresource = files('resources/org.nickvision.money.gresource.xml')

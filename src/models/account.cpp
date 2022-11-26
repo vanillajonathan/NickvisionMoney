@@ -2,11 +2,14 @@
 #include <chrono>
 #include <filesystem>
 #include <fstream>
+#include <locale>
 #include <sstream>
 #include <vector>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <hpdf.h>
+#include "../helpers/moneyhelpers.hpp"
 
+using namespace NickvisionMoney::Helpers;
 using namespace NickvisionMoney::Models;
 
 std::vector<std::string> split(const std::string& s, const std::string& delim)
@@ -359,6 +362,20 @@ boost::multiprecision::cpp_dec_float_50 Account::getTotal() const
 bool Account::exportAsPDF(const std::string& path) const
 {
     bool success{ true };
+    std::locale locale{ setlocale(LC_ALL, nullptr) };
+    std::string pathToSymbolicIcon;
+    if(std::filesystem::exists("/usr/share/icons/hicolor/symbolic/apps/org.nickvision.money-symbolic-green.jpg"))
+    {
+        pathToSymbolicIcon = "/usr/share/icons/hicolor/symbolic/apps/org.nickvision.money-symbolic-green.jpg";
+    }
+    else if(std::filesystem::exists("/app/share/icons/hicolor/symbolic/apps/org.nickvision.money-symbolic-green.jpg"))
+    {
+        pathToSymbolicIcon = "/app/share/icons/hicolor/symbolic/apps/org.nickvision.money-symbolic-green.jpg";
+    }
+    else
+    {
+        pathToSymbolicIcon = "org.nickvision.money-symbolic-green.jpg";
+    }
     //Initialize PDF
     HPDF_Doc pdf{ HPDF_New([](HPDF_STATUS, HPDF_STATUS, void* data){ *reinterpret_cast<bool*>(data) = false; }, &success) };
     //First Page
@@ -368,12 +385,32 @@ bool Account::exportAsPDF(const std::string& path) const
     HPDF_Page_SetLineWidth(page1, 0.5);
     HPDF_Page_Rectangle(page1, 10, 10, HPDF_Page_GetWidth(page1) - 20, HPDF_Page_GetHeight(page1) - 20);
     HPDF_Page_Stroke(page1);
-    //First Page - Title
+    //First Page - Font
     HPDF_Font fontTitle{ HPDF_GetFont(pdf, "Helvetica", nullptr) };
-    HPDF_Page_SetFontAndSize(page1, fontTitle, 9);
+    //First Page - Title
+    HPDF_Page_SetFontAndSize(page1, fontTitle, 11);
     HPDF_Page_BeginText(page1);
     HPDF_Page_MoveTextPos(page1, 14, HPDF_Page_GetHeight(page1) - 24);
     HPDF_Page_ShowText(page1, std::filesystem::path(m_path).filename().c_str());
+    HPDF_Page_EndText(page1);
+    //First Page - Icon
+    HPDF_Image imageIcon{ HPDF_LoadJpegImageFromFile(pdf, pathToSymbolicIcon.c_str()) };
+    HPDF_Page_DrawImage(page1, imageIcon, HPDF_Page_GetWidth(page1) - 50, HPDF_Page_GetHeight(page1) - 50, 32, 32);
+    //First Page - Income
+    HPDF_Page_SetFontAndSize(page1, fontTitle, 9);
+    HPDF_Page_BeginText(page1);
+    HPDF_Page_MoveTextPos(page1, 20, HPDF_Page_GetHeight(page1) - 54);
+    HPDF_Page_ShowText(page1, std::string("Income: " + MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale)).c_str());
+    HPDF_Page_EndText(page1);
+    //First Page - Expense
+    HPDF_Page_BeginText(page1);
+    HPDF_Page_MoveTextPos(page1,20, HPDF_Page_GetHeight(page1) - 70);
+    HPDF_Page_ShowText(page1, std::string("Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale)).c_str());
+    HPDF_Page_EndText(page1);
+    //First Page - Total
+    HPDF_Page_BeginText(page1);
+    HPDF_Page_MoveTextPos(page1, 20, HPDF_Page_GetHeight(page1) - 86);
+    HPDF_Page_ShowText(page1, std::string("Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale)).c_str());
     HPDF_Page_EndText(page1);
     //Save and Close PDF
     HPDF_SaveToFile(pdf, path.c_str());
