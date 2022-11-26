@@ -359,9 +359,23 @@ boost::multiprecision::cpp_dec_float_50 Account::getTotal() const
 bool Account::exportAsPDF(const std::string& path) const
 {
     bool success{ true };
+    //Initialize PDF
     HPDF_Doc pdf{ HPDF_New([](HPDF_STATUS, HPDF_STATUS, void* data){ *reinterpret_cast<bool*>(data) = false; }, &success) };
+    //First Page
     HPDF_Page page1{ HPDF_AddPage(pdf) };
     HPDF_Page_SetSize(page1, HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT);
+    //First Page - Main Box
+    HPDF_Page_SetLineWidth(page1, 1);
+    HPDF_Page_Rectangle(page1, 20, 20, HPDF_Page_GetWidth(page1) - 40, HPDF_Page_GetHeight(page1) - 40);
+    HPDF_Page_Stroke(page1);
+    //First Page - Title
+    HPDF_Font fontTitle{ HPDF_GetFont(pdf, "Helvetica", nullptr) };
+    HPDF_Page_SetFontAndSize(page1, fontTitle, 12);
+    HPDF_Page_BeginText(page1);
+    HPDF_Page_MoveTextPos(page1, 30, HPDF_Page_GetHeight(page1) - 40);
+    HPDF_Page_ShowText(page1, std::filesystem::path(m_path).filename().c_str());
+    HPDF_Page_EndText(page1);
+    //Save and Close PDF
     HPDF_SaveToFile(pdf, path.c_str());
     HPDF_Free(pdf);
     return success;
