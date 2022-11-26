@@ -381,37 +381,43 @@ bool Account::exportAsPDF(const std::string& path) const
     //First Page
     HPDF_Page page1{ HPDF_AddPage(pdf) };
     HPDF_Page_SetSize(page1, HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT);
+    HPDF_REAL page1Width{ HPDF_Page_GetWidth(page1) };
+    HPDF_REAL page1Height{ HPDF_Page_GetHeight(page1) };
     //First Page - Main Box
     HPDF_Page_SetLineWidth(page1, 0.5);
-    HPDF_Page_Rectangle(page1, 10, 10, HPDF_Page_GetWidth(page1) - 20, HPDF_Page_GetHeight(page1) - 20);
+    HPDF_Page_Rectangle(page1, 10, 10, page1Width - 20, page1Height - 20);
     HPDF_Page_Stroke(page1);
     //First Page - Font
     HPDF_Font fontTitle{ HPDF_GetFont(pdf, "Helvetica", nullptr) };
     //First Page - Title
     HPDF_Page_SetFontAndSize(page1, fontTitle, 11);
     HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 14, HPDF_Page_GetHeight(page1) - 24);
-    HPDF_Page_ShowText(page1, std::filesystem::path(m_path).filename().c_str());
+    HPDF_Page_MoveTextPos(page1, 16, page1Height - 26);
+    HPDF_Page_ShowText(page1, std::filesystem::path(m_path).stem().c_str());
     HPDF_Page_EndText(page1);
     //First Page - Icon
     HPDF_Image imageIcon{ HPDF_LoadJpegImageFromFile(pdf, pathToSymbolicIcon.c_str()) };
-    HPDF_Page_DrawImage(page1, imageIcon, HPDF_Page_GetWidth(page1) - 50, HPDF_Page_GetHeight(page1) - 50, 32, 32);
+    HPDF_Page_DrawImage(page1, imageIcon, page1Width - 50, page1Height - 46, 32, 32);
     //First Page - Income
     HPDF_Page_SetFontAndSize(page1, fontTitle, 9);
     HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 20, HPDF_Page_GetHeight(page1) - 54);
+    HPDF_Page_MoveTextPos(page1, 20, page1Height - 54);
     HPDF_Page_ShowText(page1, std::string("Income: " + MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale)).c_str());
     HPDF_Page_EndText(page1);
     //First Page - Expense
     HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1,20, HPDF_Page_GetHeight(page1) - 70);
+    HPDF_Page_MoveTextPos(page1, 20, page1Height - 70);
     HPDF_Page_ShowText(page1, std::string("Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale)).c_str());
     HPDF_Page_EndText(page1);
     //First Page - Total
     HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 20, HPDF_Page_GetHeight(page1) - 86);
+    HPDF_Page_MoveTextPos(page1, 20, page1Height - 86);
     HPDF_Page_ShowText(page1, std::string("Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale)).c_str());
     HPDF_Page_EndText(page1);
+    //First Page - Line Under Overview
+    HPDF_Page_SetLineWidth(page1, 0.5);
+    HPDF_Page_Rectangle(page1, 20, page1Height - 94, page1Width - 40, 0);
+    HPDF_Page_Stroke(page1);
     //Save and Close PDF
     HPDF_SaveToFile(pdf, path.c_str());
     HPDF_Free(pdf);
