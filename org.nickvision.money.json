@@ -54,6 +54,17 @@
 		}
 	    ]
 	},
+	{
+            "name": "libharu",
+            "buildsystem": "cmake",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/libharu/libharu.git",
+                    "tag": "v2.4.3"
+                }
+            ]
+        },
         {
             "name": "org.nickvision.money",
             "buildsystem": "meson",

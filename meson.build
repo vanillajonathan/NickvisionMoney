@@ -2,6 +2,8 @@ project('org.nickvision.money', ['cpp', 'c'], version: '2022.12.0', meson_versio
 
 gnome = import('gnome')
 
+cc = meson.get_compiler('c')
+
 threads = dependency('Threads')
 gtk = dependency('gtk4', version: '>= 4.8.0')
 adwaita = dependency('libadwaita-1', version: '>= 1.2.0')
@@ -9,11 +11,12 @@ jsoncpp = dependency('jsoncpp')
 dl = dependency('dl')
 sqlitecpp = dependency('SQLiteCpp')
 boost = dependency('boost', modules: ['system', 'locale'])
+hpdf = cc.find_library('hpdf')
 
 subdir('src')
 subdir('po')
 
-executable('org.nickvision.money', sources, dependencies: [threads, adwaita, jsoncpp, dl, sqlitecpp, boost], install: true)
+executable('org.nickvision.money', sources, dependencies: [threads, adwaita, jsoncpp, dl, sqlitecpp, boost, hpdf], install: true)
 install_data(resources, install_dir: 'share/icons/hicolor/scalable/apps')
 install_data(resources_symbolic, install_dir: 'share/icons/hicolor/symbolic/apps')
 install_data(resources_actions, install_dir: 'share/icons/hicolor/scalable/actions')
