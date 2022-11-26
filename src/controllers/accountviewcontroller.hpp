@@ -117,17 +117,23 @@ namespace NickvisionMoney::Controllers
 		 */
 		void receiveTransfer(const NickvisionMoney::Models::Transfer& transfer);
 		/**
+		 * Export the account as a PDF file
+		 *
+		 * @param path The path to the PDF file
+		 */
+		void exportAsPDF(std::string& path) const;
+		/**
 		 * Export the account as a CSV file
 		 *
-		 * @param path The path to the csv file
+		 * @param path The path to the CSV file
 		 */
-		void exportAsCSV(std::string& path);
+		void exportAsCSV(std::string& path) const;
 		/**
 		 * Import transactions from a CSV file
 		 *
 		 * @param path The path to the csv file
 		 */
-		void importFromCSV(std::string& path);
+		void importFromCSV(const std::string& path);
 		/**
 		 * Adds a new group to the account
 		 *

@@ -127,15 +127,22 @@ namespace NickvisionMoney::Models
          * @returns The total amount of the account
          */
         boost::multiprecision::cpp_dec_float_50 getTotal() const;
+     	/**
+         * Exports the account as a PDF file
+         *
+         * @param path The path to the PDF file
+         * @returns True if successful, else false
+         */
+        bool exportAsPDF(const std::string& path) const;
         /**
          * Exports the account as a CSV file
          *
          * @param path The path of the CSV file
          * @returns True if successful, else false
          */
-        bool exportAsCSV(const std::string& path);
+        bool exportAsCSV(const std::string& path) const;
         /**
-         * Imports transactions to the account from a CSV file
+         * Imports transactions and groups to the account from a CSV file
          *
          * @param path The path of the CSV file
          * @returns The number of transactions imported

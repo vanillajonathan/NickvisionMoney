@@ -68,14 +68,15 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     adw_button_content_set_icon_name(ADW_BUTTON_CONTENT(btnMenuAccountActionsContent), "document-properties-symbolic");
     adw_button_content_set_label(ADW_BUTTON_CONTENT(btnMenuAccountActionsContent), _("Actions"));
     gtk_menu_button_set_child(GTK_MENU_BUTTON(m_btnMenuAccountActions), btnMenuAccountActionsContent);
-    GMenu* menuActionsCSV{ g_menu_new() };
-    g_menu_append(menuActionsCSV, _("Export as CSV"), "account.exportAsCSV");
-    g_menu_append(menuActionsCSV, _("Import from CSV"), "account.importFromCSV");
+    GMenu* menuActionsExportImport{ g_menu_new() };
+    g_menu_append(menuActionsExportImport, _("Export as PDF"), "account.exportAsPDF");
+    g_menu_append(menuActionsExportImport, _("Export as CSV"), "account.exportAsCSV");
+    g_menu_append(menuActionsExportImport, _("Import from CSV"), "account.importFromCSV");
     GMenu* menuActions{ g_menu_new() };
     g_menu_append(menuActions, _("Transfer Money"), "account.transferMoney");
-    g_menu_append_section(menuActions, nullptr, G_MENU_MODEL(menuActionsCSV));
+    g_menu_append_section(menuActions, nullptr, G_MENU_MODEL(menuActionsExportImport));
     gtk_menu_button_set_menu_model(GTK_MENU_BUTTON(m_btnMenuAccountActions), G_MENU_MODEL(menuActions));
-    g_object_unref(menuActionsCSV);
+    g_object_unref(menuActionsExportImport);
     g_object_unref(menuActions);
     gtk_box_append(GTK_BOX(m_boxButtonsOverview), m_btnMenuAccountActions);
     //Button Reset Overview Filter
@@ -272,6 +273,11 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     m_actTransferMoney = g_simple_action_new("transferMoney", nullptr);
     g_signal_connect(m_actTransferMoney, "activate", G_CALLBACK((void (*)(GSimpleAction*, GVariant*, gpointer))[](GSimpleAction*, GVariant*, gpointer data) { reinterpret_cast<AccountView*>(data)->onTransferMoney(); }), this);
     g_action_map_add_action(G_ACTION_MAP(m_actionMap), G_ACTION(m_actTransferMoney));
+    //Export as PDF Action
+    m_actExportAsPDF = g_simple_action_new("exportAsPDF", nullptr);
+    g_signal_connect(m_actExportAsPDF, "activate", G_CALLBACK((void (*)(GSimpleAction*, GVariant*, gpointer))[](GSimpleAction*, GVariant*, gpointer data) { reinterpret_cast<AccountView*>(data)->onExportAsPDF
+(); }), this);
+    g_action_map_add_action(G_ACTION_MAP(m_actionMap), G_ACTION(m_actExportAsPDF));
     //Export as CSV Action
     m_actExportAsCSV = g_simple_action_new("exportAsCSV", nullptr);
     g_signal_connect(m_actExportAsCSV, "activate", G_CALLBACK((void (*)(GSimpleAction*, GVariant*, gpointer))[](GSimpleAction*, GVariant*, gpointer data) { reinterpret_cast<AccountView*>(data)->onExportAsCSV(); }), this);
@@ -292,6 +298,7 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     m_shortcutController = gtk_shortcut_controller_new();
     gtk_shortcut_controller_set_scope(GTK_SHORTCUT_CONTROLLER(m_shortcutController), GTK_SHORTCUT_SCOPE_MANAGED);
     gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(m_shortcutController), gtk_shortcut_new(gtk_shortcut_trigger_parse_string("<Ctrl>T"), gtk_named_action_new("account.transferMoney")));
+    gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(m_shortcutController), gtk_shortcut_new(gtk_shortcut_trigger_parse_string("<Ctrl>P"), gtk_named_action_new("account.exportAsPDF")));
     gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(m_shortcutController), gtk_shortcut_new(gtk_shortcut_trigger_parse_string("<Ctrl>E"), gtk_named_action_new("account.exportAsCSV")));
     gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(m_shortcutController), gtk_shortcut_new(gtk_shortcut_trigger_parse_string("<Ctrl>I"), gtk_named_action_new("account.importFromCSV")));
     gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(m_shortcutController), gtk_shortcut_new(gtk_shortcut_trigger_parse_string("<Ctrl>G"), gtk_named_action_new("account.newGroup")));
@@ -420,6 +427,31 @@ void AccountView::onTransferMoney()
     }
 }
 
+void AccountView::onExportAsPDF()
+{
+    GtkFileChooserNative* saveFileDialog{ gtk_file_chooser_native_new(_("Export as PDF"), m_parentWindow, GTK_FILE_CHOOSER_ACTION_SAVE, _("_Save"), _("_Cancel")) };
+    gtk_native_dialog_set_modal(GTK_NATIVE_DIALOG(saveFileDialog), true);
+    GtkFileFilter* filter{ gtk_file_filter_new() };
+    gtk_file_filter_set_name(filter, "PDF (*.pdf)");
+    gtk_file_filter_add_pattern(filter, "*.pdf");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(saveFileDialog), filter);
+    g_object_unref(filter);
+    g_signal_connect(saveFileDialog, "response", G_CALLBACK((void (*)(GtkNativeDialog*, gint, gpointer))([](GtkNativeDialog* dialog, gint response_id, gpointer data)
+    {
+        if(response_id == GTK_RESPONSE_ACCEPT)
+        {
+            AccountView* accountView{ reinterpret_cast<AccountView*>(data) };
+            GFile* file{ gtk_file_chooser_get_file(GTK_FILE_CHOOSER(dialog)) };
+            std::string path{ g_file_get_path(file) };
+            ProgressDialog progressDialog{ accountView->m_parentWindow, _("Exporting as PDF..."), [accountView, &path]() { accountView->m_controller->exportAsPDF(path); } };
+            progressDialog.run();
+            g_object_unref(file);
+        }
+        g_object_unref(dialog);
+    })), this);
+    gtk_native_dialog_show(GTK_NATIVE_DIALOG(saveFileDialog));
+}
+
 void AccountView::onExportAsCSV()
 {
     GtkFileChooserNative* saveFileDialog{ gtk_file_chooser_native_new(_("Export as CSV"), m_parentWindow, GTK_FILE_CHOOSER_ACTION_SAVE, _("_Save"), _("_Cancel")) };
@@ -436,7 +468,7 @@ void AccountView::onExportAsCSV()
             AccountView* accountView{ reinterpret_cast<AccountView*>(data) };
             GFile* file{ gtk_file_chooser_get_file(GTK_FILE_CHOOSER(dialog)) };
             std::string path{ g_file_get_path(file) };
-            ProgressDialog progressDialog{ accountView->m_parentWindow, "Exporting as CSV...", [accountView, &path]() { accountView->m_controller->exportAsCSV(path); } };
+            ProgressDialog progressDialog{ accountView->m_parentWindow, _("Exporting as CSV..."), [accountView, &path]() { accountView->m_controller->exportAsCSV(path); } };
             progressDialog.run();
             g_object_unref(file);
         }
@@ -461,7 +493,7 @@ void AccountView::onImportFromCSV()
             AccountView* accountView{ reinterpret_cast<AccountView*>(data) };
             GFile* file{ gtk_file_chooser_get_file(GTK_FILE_CHOOSER(dialog)) };
             std::string path{ g_file_get_path(file) };
-            ProgressDialog progressDialog{ accountView->m_parentWindow, "Importing from CSV...", [accountView, &path]() { accountView->m_controller->importFromCSV(path); } };
+            ProgressDialog progressDialog{ accountView->m_parentWindow, _("Importing from CSV..."), [accountView, &path]() { accountView->m_controller->importFromCSV(path); } };
             progressDialog.run();
             g_object_unref(file);
         }

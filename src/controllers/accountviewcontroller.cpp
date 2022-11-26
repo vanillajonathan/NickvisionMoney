@@ -100,7 +100,23 @@ void AccountViewController::receiveTransfer(const Transfer& transfer)
     m_accountInfoChangedCallback();
 }
 
-void AccountViewController::exportAsCSV(std::string& path)
+void AccountViewController::exportAsPDF(std::string& path) const
+{
+    if(std::filesystem::path(path).extension().empty() || std::filesystem::path(path).extension() != ".pdf")
+    {
+        path += ".pdf";
+    }
+    if(m_account.exportAsPDF(path))
+    {
+        m_sendToastCallback(_("Exported account as PDF successfully."));
+    }
+    else
+    {
+        m_sendToastCallback(_("Unable to export account as PDF."));
+    }
+}
+
+void AccountViewController::exportAsCSV(std::string& path) const
 {
     if(std::filesystem::path(path).extension().empty() || std::filesystem::path(path).extension() != ".csv")
     {
@@ -108,7 +124,7 @@ void AccountViewController::exportAsCSV(std::string& path)
     }
     if(m_account.exportAsCSV(path))
     {
-        m_sendToastCallback(_("Exported account to CSV successfully."));
+        m_sendToastCallback(_("Exported account as CSV successfully."));
     }
     else
     {
@@ -116,7 +132,7 @@ void AccountViewController::exportAsCSV(std::string& path)
     }
 }
 
-void AccountViewController::importFromCSV(std::string& path)
+void AccountViewController::importFromCSV(const std::string& path)
 {
     int imported{ m_account.importFromCSV(path) };
     if(imported > 0)

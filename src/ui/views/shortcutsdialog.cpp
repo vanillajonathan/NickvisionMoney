@@ -54,6 +54,12 @@ ShortcutsDialog::ShortcutsDialog(GtkWindow* parent)
                             <child>
                                 <object class="GtkShortcutsShortcut">
                                     <property name="title">%s</property>
+                                    <property name="accelerator">&lt;Control&gt;P</property>
+                                </object>
+                            </child>
+                            <child>
+                                <object class="GtkShortcutsShortcut">
+                                    <property name="title">%s</property>
                                     <property name="accelerator">&lt;Control&gt;E</property>
                                 </object>
                             </child>
@@ -121,6 +127,7 @@ ShortcutsDialog::ShortcutsDialog(GtkWindow* parent)
     _("Close Account"),
     _("Account Actions"),
     _("Transfer Money"),
+    _("Export as PDF"),
     _("Export as CSV"),
     _("Import from CSV"),
     pgettext("Shortcuts", "Group"),

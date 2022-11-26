@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <hpdf.h>
 
 using namespace NickvisionMoney::Models;
 
@@ -355,7 +356,16 @@ boost::multiprecision::cpp_dec_float_50 Account::getTotal() const
     return total;
 }
 
-bool Account::exportAsCSV(const std::string& path)
+bool Account::exportAsPDF(const std::string& path) const
+{
+    bool success{ true };
+    HPDF_Doc pdf{ HPDF_New([](HPDF_STATUS, HPDF_STATUS, void* data){ *reinterpret_cast<bool*>(data) = false; }, &success) };
+    HPDF_SaveToFile(pdf, path.c_str());
+    HPDF_Free(pdf);
+    return success;
+}
+
+bool Account::exportAsCSV(const std::string& path) const
 {
     std::ofstream file{ path };
     if(file.is_open())

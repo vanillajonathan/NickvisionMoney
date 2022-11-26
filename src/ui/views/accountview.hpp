@@ -73,6 +73,7 @@ namespace NickvisionMoney::UI::Views
 		GtkWidget* m_pageStatusNoTransactions{ nullptr };
 		GSimpleActionGroup* m_actionMap{ nullptr };
 		GSimpleAction* m_actTransferMoney{ nullptr };
+		GSimpleAction* m_actExportAsPDF{ nullptr };
 		GSimpleAction* m_actExportAsCSV{ nullptr };
 		GSimpleAction* m_actImportFromCSV{ nullptr };
 		GSimpleAction* m_actNewGroup{ nullptr };
@@ -89,6 +90,10 @@ namespace NickvisionMoney::UI::Views
 		 * Occurs when the transfer money to another account menu item is clicked
 		 */
 		void onTransferMoney();
+		/**
+		 * Occurs when the export as pdf menu item is clicked
+		 */
+		void onExportAsPDF();
 		/**
 		 * Occurs when the export as csv menu item is clicked
 		 */
