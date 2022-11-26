@@ -45,6 +45,8 @@ namespace NickvisionMoney::UI::Views
 		GtkWidget* m_boxButtonsOverview{ nullptr };
 		GtkWidget* m_btnMenuAccountActions{ nullptr };
 		GtkWidget* m_btnResetOverviewFilter{ nullptr };
+		GtkWidget* m_btnReportContent{ nullptr };
+		GtkWidget* m_btnReport{ nullptr };
 		GtkWidget* m_grpGroups{ nullptr };
 		GtkWidget* m_boxButtonsGroups{ nullptr };
 		GtkWidget* m_btnNewGroup{ nullptr };

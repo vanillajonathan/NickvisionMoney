@@ -93,6 +93,15 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     adw_preferences_group_add(ADW_PREFERENCES_GROUP(m_grpOverview), m_rowExpense);
     adw_preferences_group_set_header_suffix(ADW_PREFERENCES_GROUP(m_grpOverview), m_boxButtonsOverview);
     gtk_box_append(GTK_BOX(m_paneBox), m_grpOverview);
+    //Finance Report Button
+    m_btnReportContent = adw_button_content_new();
+    adw_button_content_set_label(ADW_BUTTON_CONTENT(m_btnReportContent), _("Finance Report"));
+    adw_button_content_set_icon_name(ADW_BUTTON_CONTENT(m_btnReportContent), "bars-symbolic");
+    m_btnReport = gtk_button_new();
+    gtk_button_set_child(GTK_BUTTON(m_btnReport), m_btnReportContent);
+    gtk_widget_add_css_class(m_btnReport, "pill");
+    gtk_widget_set_halign(m_btnReport, GTK_ALIGN_CENTER);
+    gtk_box_append(GTK_BOX(m_paneBox), m_btnReport);
     //Group Buttons Box
     m_boxButtonsGroups = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     //Button New Group

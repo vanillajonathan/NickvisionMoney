@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="16px"
+   viewBox="0 0 16 16"
+   width="16px"
+   version="1.1"
+   id="svg8751"
+   sodipodi:docname="align-tool-rotated-symbolic.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8755" />
+  <sodipodi:namedview
+     id="namedview8753"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="29.375"
+     inkscape:cx="8"
+     inkscape:cy="8.306383"
+     inkscape:window-width="1360"
+     inkscape:window-height="699"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8751" />
+  <path
+     d="M 1.2094415,14.5 H 15.209441 v -2 H 1.2094415 Z m 1.976562,-2.976562 h 4.023438 V 5.5 H 3.1860035 Z M 9.2094415,11.5 H 13.209441 V 1.5 H 9.2094415 Z m 0,0"
+     fill="#222222"
+     id="path8749" />
+</svg>
