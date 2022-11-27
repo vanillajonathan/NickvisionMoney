@@ -379,7 +379,7 @@ bool Account::exportAsPDF(const std::string& path) const
         pathToSymbolicIcon = "org.nickvision.money-symbolic-green.jpg";
     }
     //Write PDF
-    PDFDocument pdf{ path };
+    PDFDocument pdf;
     //First Page
     int page1Index{ pdf.addPage(HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT) };
     if(page1Index == -1)
@@ -402,7 +402,7 @@ bool Account::exportAsPDF(const std::string& path) const
     //First Page - Generated Time
     std::time_t timeNow{ std::time(0) };
     page1.drawText(16, 16, StringHelpers::format(_("Generated: %s"), ctime(&timeNow)));
-    return pdf.save();
+    return pdf.save(path);
 }
 
 bool Account::exportAsCSV(const std::string& path) const

@@ -3,7 +3,7 @@
 
 using namespace NickvisionMoney::Models;
 
-PDFDocument::PDFDocument(const std::string& path) : m_path{ path }, m_success{ true }
+PDFDocument::PDFDocument()
 {
     m_handle = HPDF_New([](HPDF_STATUS, HPDF_STATUS, void*){ throw std::runtime_error("PDF Error"); }, nullptr);
 }
@@ -13,11 +13,11 @@ PDFDocument::~PDFDocument()
     HPDF_Free(m_handle);
 }
 
-bool PDFDocument::save() const
+bool PDFDocument::save(const std::string& path) const
 {
     try
     {
-         HPDF_SaveToFile(m_handle, m_path.c_str());
+         HPDF_SaveToFile(m_handle, path.c_str());
          return true;
     }
     catch(...)

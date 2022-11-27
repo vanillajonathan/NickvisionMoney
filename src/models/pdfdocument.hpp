@@ -16,10 +16,8 @@ namespace NickvisionMoney::Models
 	public:
 		/**
 		 * Constructs a PDFDocument
-		 *
-		 * @param The path of the pdf
 		 */
-		PDFDocument(const std::string& path);
+		PDFDocument();
 		/**
 		 * Destructs a PDFDocument
 		 */
@@ -27,9 +25,10 @@ namespace NickvisionMoney::Models
 		/**
 		 * Saves the PDF to disk
 		 *
+		 * @param path The save path
 		 * @returns True if successful, else false
 		 */
-		bool save() const;
+		bool save(const std::string& path) const;
 		/**
 		 * Gets the list of pages added to the PDF
 		 *
@@ -46,8 +45,6 @@ namespace NickvisionMoney::Models
 		int addPage(HPDF_PageSizes size, HPDF_PageDirection orientation);
 
 	private:
-		std::string m_path;
-		bool m_success;
 		HPDF_Doc m_handle;
 		std::vector<PDFPage> m_pages;
 	};
