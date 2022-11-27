@@ -8,6 +8,8 @@
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include "pdfdocument.hpp"
 #include "../helpers/moneyhelpers.hpp"
+#include "../helpers/translation.hpp"
+#include "../helpers/stringhelpers.hpp"
 
 using namespace NickvisionMoney::Helpers;
 using namespace NickvisionMoney::Models;
@@ -393,13 +395,13 @@ bool Account::exportAsPDF(const std::string& path) const
     page1.drawJPEG(page1.getWidth() - 50, page1.getHeight() - 46, 32, 32, pathToSymbolicIcon);
     //First Page - Overview
     page1.setFont("Helvetica", 9);
-    page1.drawText(20, page1.getHeight() - 54, "Income: " + MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale));
-    page1.drawText(20, page1.getHeight() - 70, "Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale));
-    page1.drawText(20, page1.getHeight() - 86, "Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale));
+    page1.drawText(20, page1.getHeight() - 54, StringHelpers::format(_("Income: %s"), MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale).c_str()));
+    page1.drawText(20, page1.getHeight() - 70, StringHelpers::format(_("Expense: %s"), MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale).c_str()));
+    page1.drawText(20, page1.getHeight() - 86, StringHelpers::format(_("Total: %s"), MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale).c_str()));
     page1.drawLine(0.5, 20, page1.getHeight() - 94, page1.getWidth() - 40);
     //First Page - Generated Time
     std::time_t timeNow{ std::time(0) };
-    page1.drawText(16, 16, "Generated: " + std::string(ctime(&timeNow)));
+    page1.drawText(16, 16, StringHelpers::format(_("Generated: %s"), ctime(&timeNow)));
     return pdf.save();
 }
 
