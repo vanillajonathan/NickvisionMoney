@@ -1,112 +1,113 @@
-# Italian translation for Nickvision-Money.
+# Spanish translation for Money.
 # Copyright (C) 2022 Nick Logozzo
 # This file is distributed under the same license as the org.nickvision.money package.
 # Mattia Borda <mattiagiovanni.borda@icloud.com>, 2022.
+# Daniel Darias <dariasteam94@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: org.nickvision.money\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-24 09:02+0300\n"
-"PO-Revision-Date: 2022-11-27 16:50+0100\n"
-"Last-Translator: Mattia Borda <mattiagiovanni.borda@icloud.com>\n"
-"Language-Team: Italian <>\n"
-"Language: it\n"
+"PO-Revision-Date: 2022-11-27 15:44+0000\n"
+"Last-Translator: Daniel Darias <dariasteam94@gmail.com>\n"
+"Language-Team: Spanish - Spain <dariasteam94@gmail.com>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: src/controllers/accountviewcontroller.cpp:85
 #, c-format
 msgid "Transfer To %s"
-msgstr "Trasferimento a %s"
+msgstr "Transferir a %s"
 
 #: src/controllers/accountviewcontroller.cpp:96
 #, c-format
 msgid "Transfer From %s"
-msgstr "Trasferimento da %s"
+msgstr "Transferir desde %s"
 
 #: src/controllers/accountviewcontroller.cpp:111
 msgid "Exported account to CSV successfully."
-msgstr "Account esportato come CSV."
+msgstr "Cuenta exportada a CSV correctamente."
 
 #: src/controllers/accountviewcontroller.cpp:115
 msgid "Unable to export account as CSV."
-msgstr "Impossibile esportare l'account come CSV."
+msgstr "Imposible exportar cuenta como CSV."
 
 #: src/controllers/accountviewcontroller.cpp:133
 #, c-format
 msgid "Imported %d transaction from CSV."
 msgid_plural "Imported %d transactions from CSV."
-msgstr[0] "Importata %d transazione dal file CSV."
-msgstr[1] "Importate %d transazioni dal file CSV."
+msgstr[0] "Transacción %d importada desde CSV."
+msgstr[1] "Transacciones %d importadas desde CSV."
 
 #: src/controllers/mainwindowcontroller.cpp:49
 msgctxt "Night"
 msgid "Good Morning!"
-msgstr "Buongiorno!"
+msgstr "Buenos días!"
 
 #: src/controllers/mainwindowcontroller.cpp:53
 msgctxt "Morning"
 msgid "Good Morning!"
-msgstr "Buongiorno!"
+msgstr "Buenos días!"
 
 #: src/controllers/mainwindowcontroller.cpp:57
 msgid "Good Afternoon!"
-msgstr "Buon pomeriggio!"
+msgstr "Buenas tardes!"
 
 #: src/controllers/mainwindowcontroller.cpp:61
 msgid "Good Evening!"
-msgstr "Buona sera!"
+msgstr "Buenas noches!"
 
 #: src/controllers/mainwindowcontroller.cpp:65
 msgid "Good Day!"
-msgstr "Buongiorno!"
+msgstr "Buen día!"
 
 #: src/controllers/transactiondialogcontroller.cpp:17
 #: src/controllers/transactiondialogcontroller.cpp:27
 msgid "None"
-msgstr "Nessuno"
+msgstr "Nada"
 
 #: src/models/transaction.cpp:55 src/ui/views/transactiondialog.cpp:76
 msgid "Never"
-msgstr "Mai"
+msgstr "Nunca"
 
 #: src/models/transaction.cpp:59 src/ui/views/transactiondialog.cpp:76
 msgid "Daily"
-msgstr "Ogni giorno"
+msgstr "Diariamente"
 
 #: src/models/transaction.cpp:63 src/ui/views/transactiondialog.cpp:76
 msgid "Weekly"
-msgstr "Ogni settimana"
+msgstr "Semanalmente"
 
 #: src/models/transaction.cpp:67 src/ui/views/transactiondialog.cpp:76
 msgid "Monthly"
-msgstr "Ogni mese"
+msgstr "Mensualmente"
 
 #: src/models/transaction.cpp:71 src/ui/views/transactiondialog.cpp:76
 msgid "Quarterly"
-msgstr "Ogni 4 mesi"
+msgstr "Cuatrimestralmente"
 
 #: src/models/transaction.cpp:75 src/ui/views/transactiondialog.cpp:76
 msgid "Yearly"
-msgstr "Ogni anno"
+msgstr "Anualmente"
 
 #: src/models/transaction.cpp:79 src/ui/views/transactiondialog.cpp:76
 msgid "Biyearly"
-msgstr "Ogni 2 anni"
+msgstr "Cada dos años"
 
 #: src/ui/application.cpp:30
 msgid "A personal finance manager."
-msgstr "Gestione finanziaria personale."
+msgstr "Un gestor de finanzas personales."
 
 #: src/ui/controls/comboboxdialog.cpp:10 src/ui/controls/entrydialog.cpp:10
 #: src/ui/views/groupdialog.cpp:11 src/ui/views/transactiondialog.cpp:14
 #: src/ui/views/transferdialog.cpp:12
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Cancelar"
 
 #: src/ui/controls/comboboxdialog.cpp:10 src/ui/controls/entrydialog.cpp:10
 #: src/ui/views/groupdialog.cpp:11 src/ui/views/transactiondialog.cpp:14
@@ -116,90 +117,90 @@ msgstr "Ok"
 
 #: src/ui/controls/grouprow.cpp:29
 msgid "Edit Group"
-msgstr "Modifica gruppo"
+msgstr "Editar grupo"
 
 #: src/ui/controls/grouprow.cpp:37
 msgid "Delete Group"
-msgstr "Elimina gruppo"
+msgstr "Eliminar grupo"
 
 #: src/ui/controls/transactionrow.cpp:24
 msgid "Repeat Interval: "
-msgstr "Frequenza: "
+msgstr "Frecuencia"
 
 #: src/ui/controls/transactionrow.cpp:60
 msgid "Edit Transaction"
-msgstr "Modifica transazione"
+msgstr "Editar transacción"
 
 #: src/ui/controls/transactionrow.cpp:68
 msgid "Delete Transaction"
-msgstr "Elimina transazione"
+msgstr "Elminar transacción"
 
 #: src/ui/views/accountview.cpp:38
 msgid "Total"
-msgstr "Totale"
+msgstr "Total"
 
 #: src/ui/views/accountview.cpp:48
 msgid "Income"
-msgstr "Entrate"
+msgstr "Ingreso"
 
 #: src/ui/views/accountview.cpp:59
 msgid "Expense"
-msgstr "Uscite"
+msgstr "Gasto"
 
 #: src/ui/views/accountview.cpp:69
 msgid "Actions"
-msgstr "Azioni"
+msgstr "Acciones"
 
 #: src/ui/views/accountview.cpp:72 src/ui/views/accountview.cpp:425
 #: src/ui/views/shortcutsdialog.cpp:124
 msgid "Export as CSV"
-msgstr "Esporta come CSV"
+msgstr "Esportar a CSV"
 
 #: src/ui/views/accountview.cpp:73 src/ui/views/accountview.cpp:450
 #: src/ui/views/shortcutsdialog.cpp:125
 msgid "Import from CSV"
-msgstr "Importa da CSV"
+msgstr "Importar desde CSV"
 
 #: src/ui/views/accountview.cpp:75 src/ui/views/shortcutsdialog.cpp:123
 msgid "Transfer Money"
-msgstr "Trasferisci denaro"
+msgstr "Transferir Dinero"
 
 #: src/ui/views/accountview.cpp:84
 msgid "Reset Overview Filters"
-msgstr "Ripristina filtri dell'anteprima"
+msgstr "Reiniciar filtros de la vista general"
 
 #: src/ui/views/accountview.cpp:89
 msgid "Overview"
-msgstr "Panoramica"
+msgstr "Vista general"
 
 #: src/ui/views/accountview.cpp:102
 msgctxt "Group"
 msgid "New"
-msgstr "Nuovo"
+msgstr "Nuevo"
 
 #: src/ui/views/accountview.cpp:103
 msgid "New Group (Ctrl+G)"
-msgstr "Nuovo gruppo (Ctrl+G)"
+msgstr "Nuevo grupo (Ctrl+G)"
 
 #: src/ui/views/accountview.cpp:110
 msgid "Reset Groups Filters"
-msgstr "Ripristina filtri dei gruppi"
+msgstr "Reiniciar filtros de grupos"
 
 #: src/ui/views/accountview.cpp:115
 msgid "Groups"
-msgstr "Gruppi"
+msgstr "Grupos"
 
 #: src/ui/views/accountview.cpp:130
 msgid "Reset Dates Filters"
-msgstr "Ripristina filtri delle date"
+msgstr "Reinciiar filtros de fecha"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "January"
-msgstr "Gennaio"
+msgstr "Eneri"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "February"
-msgstr "Febbraio"
+msgstr "Febrero"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "March"
@@ -207,19 +208,19 @@ msgstr "Marzo"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "April"
-msgstr "Aprile"
+msgstr "Abril"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "May"
-msgstr "Maggio"
+msgstr "Mayo"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "June"
-msgstr "Giugno"
+msgstr "Junio"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "July"
-msgstr "Luglio"
+msgstr "Julio"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "August"
@@ -227,31 +228,31 @@ msgstr "Agosto"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "September"
-msgstr "Settembre"
+msgstr "Septiembre"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "October"
-msgstr "Ottobre"
+msgstr "Octubre"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "November"
-msgstr "Novembre"
+msgstr "Noviembre"
 
 #: src/ui/views/accountview.cpp:137 src/ui/views/accountview.cpp:150
 msgid "December"
-msgstr "Dicembre"
+msgstr "Diciembre"
 
 #: src/ui/views/accountview.cpp:170
 msgid "Start"
-msgstr "Inizio"
+msgstr "Inicio"
 
 #: src/ui/views/accountview.cpp:174
 msgid "End"
-msgstr "Fine"
+msgstr "Fin"
 
 #: src/ui/views/accountview.cpp:180
 msgid "Select Range"
-msgstr "Seleziona periodo"
+msgstr "Seleccionar rango"
 
 #: src/ui/views/accountview.cpp:189
 msgid "Calendar"
@@ -260,75 +261,74 @@ msgstr "Calendario"
 #: src/ui/views/accountview.cpp:202
 msgctxt "Transaction"
 msgid "New"
-msgstr "Nuova"
+msgstr "Nuevo"
 
 #: src/ui/views/accountview.cpp:203
 msgid "New Transaction (Ctrl+Shift+N)"
-msgstr "Nuova transazione (Ctrl+Maiusc+N)"
+msgstr "Nueva transacción (Ctrl+Mayus+N)"
 
 #: src/ui/views/accountview.cpp:212
 msgid "Sort From Top To Bottom"
-msgstr "Ordina dall'alto al basso"
+msgstr "Orden ascendente"
 
 #: src/ui/views/accountview.cpp:216
 msgid "Sort From Bottom To Top"
-msgstr "Ordina dal basso all'alto"
+msgstr "Orden descendente"
 
 #: src/ui/views/accountview.cpp:226
 msgid "Transactions"
-msgstr "Transazioni"
+msgstr "Transacciones"
 
 #: src/ui/views/accountview.cpp:392
 msgid "No Transactions Found"
-msgstr "Nessuna transazione trovata"
+msgstr "Ninguna transacción encontrada"
 
 #: src/ui/views/accountview.cpp:393
 msgid "No transactions match the specified filters."
-msgstr ""
-"Non è stata trovata alcuna transazione che corrisponda ai filtri selezionati."
+msgstr "Ninguna transacción cumple los filtros especificados."
 
 #: src/ui/views/accountview.cpp:400
 msgid "No Transactions"
-msgstr "Nessuna transazione"
+msgstr "Ninguna transacción"
 
 #: src/ui/views/accountview.cpp:401
 msgid ""
 "Add a new transaction or import transactions from a CSV file using the "
 "Actions menu in the sidebar."
 msgstr ""
-"Crea una nuova transazione o importa transazioni da un file CSV con il menu "
-"Azioni nella barra laterale."
+"Crea una nueva transacción o importalas desde un archivo CSV usando el menu "
+"Acciones de la barra lateral."
 
 #: src/ui/views/accountview.cpp:419
 msgid "This account has no money available to transfer."
-msgstr "Questo account non ha denaro disponibile per il trasferimento."
+msgstr "Esta cuenta no tiene dinero disponible para transferir."
 
 #: src/ui/views/accountview.cpp:425 src/ui/views/mainwindow.cpp:259
 msgid "_Save"
-msgstr "Salva"
+msgstr "Guardar"
 
 #: src/ui/views/accountview.cpp:425 src/ui/views/accountview.cpp:450
 #: src/ui/views/mainwindow.cpp:259 src/ui/views/mainwindow.cpp:295
 #: src/ui/views/transferdialog.cpp:98
 msgid "_Cancel"
-msgstr "Annulla"
+msgstr "Cancelar"
 
 #: src/ui/views/accountview.cpp:450 src/ui/views/mainwindow.cpp:295
 #: src/ui/views/transferdialog.cpp:98
 msgid "_Open"
-msgstr "Apri"
+msgstr "Abrir"
 
 #: src/ui/views/accountview.cpp:507
 msgid "Delete Group?"
-msgstr "Eliminare il gruppo?"
+msgstr "Eliminar grupo?"
 
 #: src/ui/views/accountview.cpp:507
 msgid ""
 "Are you sure you want to delete this group?\n"
 "This action is irreversible."
 msgstr ""
-"Eliminare il gruppo?\n"
-"L'azione è irreversibile."
+"Seguro que quieres eliminar este grupo?\n"
+"Esta acción no se puede deshacer."
 
 #: src/ui/views/accountview.cpp:507 src/ui/views/accountview.cpp:544
 msgid "No"
@@ -340,103 +340,103 @@ msgstr "Si"
 
 #: src/ui/views/accountview.cpp:544
 msgid "Delete Transaction?"
-msgstr "Eliminare la transazione?"
+msgstr "Eliminar transacción?"
 
 #: src/ui/views/accountview.cpp:544
 msgid ""
 "Are you sure you want to delete this transaction?\n"
 "This action is irreversible."
 msgstr ""
-"Eliminare la transazione?\n"
-"L'azione è irreversibile."
+"Seguro que quieres eliminar la transacción?\n"
+"Esta acción no se puede deshacer."
 
 #: src/ui/views/groupdialog.cpp:7 src/ui/views/transactiondialog.cpp:83
 msgid "Group"
-msgstr "Gruppo"
+msgstr "Grupo"
 
 #: src/ui/views/groupdialog.cpp:21 src/ui/views/groupdialog.cpp:61
 msgid "Name"
-msgstr "Nome"
+msgstr "Nombre"
 
 #: src/ui/views/groupdialog.cpp:27 src/ui/views/groupdialog.cpp:63
 #: src/ui/views/transactiondialog.cpp:28 src/ui/views/transactiondialog.cpp:155
 msgid "Description"
-msgstr "Descrizione"
+msgstr "Descripción"
 
 #: src/ui/views/groupdialog.cpp:68
 msgid "Name (Empty)"
-msgstr "Inserire un nome"
+msgstr "Inserte un nombre"
 
 #: src/ui/views/groupdialog.cpp:73 src/ui/views/transactiondialog.cpp:162
 msgid "Description (Empty)"
-msgstr "Inserire una descrizione"
+msgstr "Inserte una descripción"
 
 #: src/ui/views/groupdialog.cpp:78
 msgid "Name (Exists)"
-msgstr "Il nome non può essere uguale a un altro gruppo"
+msgstr "El nombre ya se está usando"
 
 #: src/ui/views/mainwindow.cpp:28
 msgid "Recents"
-msgstr "Recenti"
+msgstr "Reciente"
 
 #: src/ui/views/mainwindow.cpp:41
 msgid "New"
-msgstr "Nuovo"
+msgstr "Nuevo"
 
 #: src/ui/views/mainwindow.cpp:44
 msgid "New Account (Ctrl+N)"
-msgstr "Nuovo account (Ctrl+N)"
+msgstr "Nueva cuenta (Ctrl+N)"
 
 #: src/ui/views/mainwindow.cpp:50
 msgid "Open Account (Ctrl+O)"
-msgstr "Apri account (Ctrl+O)"
+msgstr "Abrir cuenta (Ctrl+O)"
 
 #: src/ui/views/mainwindow.cpp:76
 msgid "Account Menu"
-msgstr "Menu account"
+msgstr "Menú de cuenta"
 
 #: src/ui/views/mainwindow.cpp:83
 msgid "Toggle Sidebar"
-msgstr "Mostra/nascondi barra laterale"
+msgstr "Mostrar/esconder barra lateral"
 
 #: src/ui/views/mainwindow.cpp:88 src/ui/views/preferencesdialog.cpp:17
 #: src/ui/views/shortcutsdialog.cpp:131
 msgid "Preferences"
-msgstr "Preferenze"
+msgstr "Preferencias"
 
 #: src/ui/views/mainwindow.cpp:89 src/ui/views/shortcutsdialog.cpp:132
 msgid "Keyboard Shortcuts"
-msgstr "Scorciatoie da tastiera"
+msgstr "Atajos de teclado"
 
 #: src/ui/views/mainwindow.cpp:90
 #, c-format
 msgid "About %s"
-msgstr "Informazioni su %s"
+msgstr "Acerca de %s"
 
 #: src/ui/views/mainwindow.cpp:93
 msgid "Main Menu"
-msgstr "Menu principale"
+msgstr "Menú principal"
 
 #: src/ui/views/mainwindow.cpp:110 src/ui/views/shortcutsdialog.cpp:119
 msgid "New Account"
-msgstr "Nuovo account"
+msgstr "Nueva cuenta"
 
 #: src/ui/views/mainwindow.cpp:118 src/ui/views/mainwindow.cpp:259
 #: src/ui/views/mainwindow.cpp:295 src/ui/views/shortcutsdialog.cpp:120
 msgid "Open Account"
-msgstr "Apri account"
+msgstr "Abrir cuenta"
 
 #: src/ui/views/mainwindow.cpp:122
 msgid "You may also drag in a file from your file browser to open."
-msgstr "È anche possibile trascinare un file per aprirlo."
+msgstr "También puedes arrastrar un archivo para abrirlo."
 
 #: src/ui/views/mainwindow.cpp:133
 msgid "Recent Accounts"
-msgstr "Account recenti"
+msgstr "Cuenas recientes"
 
 #: src/ui/views/mainwindow.cpp:147
 msgid "Open or create an account to get started."
-msgstr "Apri o crea un account per cominciare."
+msgstr "Abre o crea una cuenta nueva para comenzar."
 
 #: src/ui/views/mainwindow.cpp:262 src/ui/views/mainwindow.cpp:298
 #: src/ui/views/transferdialog.cpp:101
@@ -445,15 +445,15 @@ msgstr "Account Money (*.nmoney)"
 
 #: src/ui/views/mainwindow.cpp:275
 msgid "Unable to override an opened account."
-msgstr "Non è possibile sovrascrivere un account aperto."
+msgstr "No se puede sobreescribir una cuenta abierta."
 
 #: src/ui/views/preferencesdialog.cpp:20
 msgid "User Interface"
-msgstr "Interfaccia"
+msgstr "Interfaz"
 
 #: src/ui/views/preferencesdialog.cpp:21
 msgid "Customize the application's user interface."
-msgstr "Personalizza l'interfaccia dell'applicazione."
+msgstr "Personaliza la interfaz de la aplicación."
 
 #: src/ui/views/preferencesdialog.cpp:24
 msgid "Theme"
@@ -465,68 +465,68 @@ msgstr "Sistema"
 
 #: src/ui/views/preferencesdialog.cpp:25
 msgid "Light"
-msgstr "Chiaro"
+msgstr "Claro"
 
 #: src/ui/views/preferencesdialog.cpp:25
 msgid "Dark"
-msgstr "Scuro"
+msgstr "Oscuro"
 
 #: src/ui/views/shortcutsdialog.cpp:118
 msgid "Account"
-msgstr "Account"
+msgstr "Cuenta"
 
 #: src/ui/views/shortcutsdialog.cpp:121
 msgid "Close Account"
-msgstr "Chiudi account"
+msgstr "Cerrar cuenta"
 
 #: src/ui/views/shortcutsdialog.cpp:122
 msgid "Account Actions"
-msgstr "Azioni account"
+msgstr "Acciones de la cuenta"
 
 #: src/ui/views/shortcutsdialog.cpp:126
 msgctxt "Shortcuts"
 msgid "Group"
-msgstr "Gruppi"
+msgstr "Grupo"
 
 #: src/ui/views/shortcutsdialog.cpp:127
 msgid "New Group"
-msgstr "Nuovo gruppo"
+msgstr "Nuevo grupo"
 
 #: src/ui/views/shortcutsdialog.cpp:128
 msgid "Transaction"
-msgstr "Transazione"
+msgstr "Transacción"
 
 #: src/ui/views/shortcutsdialog.cpp:129
 msgid "New Transaction"
-msgstr "Nuova transazione"
+msgstr "Nueva transacción"
 
 #: src/ui/views/shortcutsdialog.cpp:130
 msgid "Application"
-msgstr "Applicazione"
+msgstr "Aplicación"
 
 #: src/ui/views/shortcutsdialog.cpp:133
 msgid "About"
-msgstr "Informazioni"
+msgstr "Acerca de"
 
 #: src/ui/views/transactiondialog.cpp:19
 #, c-format
 msgid "Transaction - %s"
-msgstr "Transazione - %s"
+msgstr "Transacción - %s"
 
 #: src/ui/views/transactiondialog.cpp:33 src/ui/views/transactiondialog.cpp:157
 #: src/ui/views/transferdialog.cpp:39 src/ui/views/transferdialog.cpp:72
 msgid "Amount"
-msgstr "Ammontare"
+msgstr "Cantidad"
 
 #: src/ui/views/transactiondialog.cpp:37
 msgctxt "Transaction|Edition"
 msgid "Income"
-msgstr "Entrata"
+msgstr "Ingreso"
 
 #: src/ui/views/transactiondialog.cpp:39
 msgctxt "Transaction|Edition"
 msgid "Expense"
-msgstr "Uscita"
+msgstr "Gasto"
 
 #: src/ui/views/transactiondialog.cpp:49
 msgid "Type"
@@ -534,27 +534,27 @@ msgstr "Tipo"
 
 #: src/ui/views/transactiondialog.cpp:69
 msgid "Date"
-msgstr "Data"
+msgstr "Fecha"
 
 #: src/ui/views/transactiondialog.cpp:75
 msgid "Repeat Interval"
-msgstr "Frequenza"
+msgstr "Frecuencia"
 
 #: src/ui/views/transactiondialog.cpp:96
 msgid "Color"
-msgstr "Colore"
+msgstr "Color"
 
 #: src/ui/views/transactiondialog.cpp:167
 msgid "Amount (Empty)"
-msgstr "Inserire un ammontare"
+msgstr "Inserta una cantidad"
 
 #: src/ui/views/transactiondialog.cpp:172 src/ui/views/transferdialog.cpp:82
 msgid "Amount (Invalid)"
-msgstr "Inserire un ammontare valido"
+msgstr "Cantidad inválida"
 
 #: src/ui/views/transferdialog.cpp:7
 msgid "Transfer"
-msgstr "Trasferimento"
+msgstr "Transferir"
 
 #: src/ui/views/transferdialog.cpp:11
 msgid ""
@@ -562,50 +562,22 @@ msgid ""
 "in this account and an income transaction with the given amount in the "
 "account to transfer to."
 msgstr ""
-"Un trasferimento di denaro creerà un'uscita in questo account e un'entrata "
-"nell'account selezionato per il trasferimento."
+"Transferir dinero creará una transacción gasto con la cantidad dada en esta "
+"cuenta y una transacción ingreso con la misma cantidad en la cuenta a la que "
+"se transfiere."
 
 #: src/ui/views/transferdialog.cpp:21
 msgid "No Account Selected"
-msgstr "Nessun account selezionato"
+msgstr "Ninguna cuenta seleccionada"
 
 #: src/ui/views/transferdialog.cpp:29 src/ui/views/transferdialog.cpp:98
 msgid "Select Account"
-msgstr "Seleziona account"
+msgstr "Selecciona cuenta"
 
 #: src/ui/views/transferdialog.cpp:33 src/ui/views/transferdialog.cpp:70
 msgid "Transfer Account"
-msgstr "Account per il trasferimento"
+msgstr "Transferir cuenta"
 
 #: src/ui/views/transferdialog.cpp:77
 msgid "Transfer Account (Invalid)"
-msgstr "Selezionare un account per il trasferimento valido"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Currency"
-#~ msgstr "Valuta"
-
-#~ msgid ""
-#~ "Customize currency settings.\n"
-#~ "\n"
-#~ "A change in one of these settings will only be applied on newly opened "
-#~ "accounts."
-#~ msgstr ""
-#~ "Personalizza le impostazioni della valuta.\n"
-#~ "\n"
-#~ "Le modifiche saranno applicate solo agli account aperti dopo la modifica."
-
-#~ msgid "Currency Symbol"
-#~ msgstr "Simbolo della valuta"
-
-#~ msgid "Display Currency Symbol On Right"
-#~ msgstr "Mostra il simbolo della valuta a destra"
-
-#~ msgid ""
-#~ "If checked, the currency symbol will be displayed on the right of a "
-#~ "monetary value."
-#~ msgstr ""
-#~ "Se attivo, il simbolo della valuta sarà mostrato a destra di un valore "
-#~ "monetario."
+msgstr "Inserta una transferencia válida"
