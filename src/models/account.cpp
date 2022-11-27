@@ -363,25 +363,25 @@ bool Account::exportAsPDF(const std::string& path) const
     {
         pathToSymbolicIcon = "org.nickvision.money-symbolic-green.jpg";
     }
-    //Get Arial Font Path
-    std::string pathToArialFont;
-    if(std::filesystem::exists("/usr/share/org.nickvision.money/arial.ttf"))
+    //Get Source Sans Pro Font Path
+    std::string pathToSSPFont;
+    if(std::filesystem::exists("/usr/share/org.nickvision.money/sourcesanspro.ttf"))
     {
-        pathToArialFont = "/usr/share/org.nickvision.money/arial.ttf";
+        pathToSSPFont = "/usr/share/org.nickvision.money/sourcesanspro.ttf";
     }
-    else if(std::filesystem::exists("/app/share/org.nickvision.money/arial.ttf"))
+    else if(std::filesystem::exists("/app/share/org.nickvision.money/sourcesanspro.ttf"))
     {
-        pathToArialFont = "/app/share/org.nickvision.money/arial.ttf";
+        pathToSSPFont = "/app/share/org.nickvision.money/sourcesanspro.ttf";
     }
     else
     {
-        pathToArialFont = "arial.ttf";
+        pathToSSPFont = "sourcesanspro.ttf";
     }
     //Write PDF
     PDFDocument pdf;
-    //Arial Font
-    std::string arialFont{ pdf.loadTTFontFromFile(pathToArialFont) };
-    if(arialFont.empty())
+    //Source Sans Pro Font
+    std::string sourceSansProFont{ pdf.loadTTFontFromFile(pathToSSPFont) };
+    if(sourceSansProFont.empty())
     {
         return false;
     }
@@ -395,11 +395,11 @@ bool Account::exportAsPDF(const std::string& path) const
     //First Page - Border Box
     page1.drawRectangle(0.5, 10, 10, page1.getWidth() - 20, page1.getHeight() - 20);
     //First Page - Title and Icon
-    page1.setUTFFont(arialFont, 11);
+    page1.setUTFFont(sourceSansProFont, 11);
     page1.drawText(16, page1.getHeight() - 26, std::filesystem::path(m_path).stem());
     page1.drawJPEG(page1.getWidth() - 50, page1.getHeight() - 46, 32, 32, pathToSymbolicIcon);
     //First Page - Overview
-    page1.setUTFFont(arialFont, 9);
+    page1.setUTFFont(sourceSansProFont, 9);
     page1.drawText(20, page1.getHeight() - 54, StringHelpers::format(_("Income: %s"), MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale).c_str()));
     page1.drawText(20, page1.getHeight() - 70, StringHelpers::format(_("Expense: %s"), MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale).c_str()));
     page1.drawText(20, page1.getHeight() - 86, StringHelpers::format(_("Total: %s"), MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale).c_str()));
