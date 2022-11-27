@@ -1,9 +1,6 @@
 #include "reportdialogcontroller.hpp"
-#include <filesystem>
-#include "../helpers/moneyhelpers.hpp"
 
 using namespace NickvisionMoney::Controllers;
-using namespace NickvisionMoney::Helpers;
 
 ReportDialogController::ReportDialogController()
 {

@@ -20,11 +20,11 @@ float PDFPage::getHeight() const
     return m_height;
 }
 
-bool PDFPage::setFont(const std::string& name, float size)
+bool PDFPage::setUTFFont(const std::string& name, float size)
 {
     try
     {
-        HPDF_Font font{ HPDF_GetFont(m_parent, name.c_str(), nullptr) };
+        HPDF_Font font{ HPDF_GetFont(m_parent, name.c_str(), "UTF-8") };
         HPDF_Page_SetFontAndSize(m_handle, font, size);
         return true;
     }

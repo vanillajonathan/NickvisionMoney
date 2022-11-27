@@ -32,13 +32,13 @@ namespace NickvisionMoney::Models
 		 */
 		float getHeight() const;
 		/**
-		 * Sets the font of the page
+		 * Sets the UTF font of the page
 		 *
 		 * @param name The font name
 		 * @param size The point size to use
 		 * @returns True if successful, else false
 		 */
-		bool setFont(const std::string& name, float size = 9);
+		bool setUTFFont(const std::string& name, float size = 9);
 		/**
 		 * Draws a rectangle on the page
 		 *

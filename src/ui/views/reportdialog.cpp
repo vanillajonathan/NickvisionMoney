@@ -1,9 +1,7 @@
 #include "reportdialog.hpp"
-#include "../../helpers/stringhelpers.hpp"
 #include "../../helpers/translation.hpp"
 
 using namespace NickvisionMoney::Controllers;
-using namespace NickvisionMoney::Helpers;
 using namespace NickvisionMoney::UI::Views;
 
 ReportDialog::ReportDialog(GtkWindow* parent, ReportDialogController& controller) : m_controller{ controller }, m_gobj{ adw_message_dialog_new(parent, _("Finance Report"), nullptr) }
@@ -56,10 +54,6 @@ ReportDialog::ReportDialog(GtkWindow* parent, ReportDialogController& controller
     adw_message_dialog_set_extra_child(ADW_MESSAGE_DIALOG(m_gobj), m_boxMain);
 }
 
-void ReportDialog::onModeChanged(GtkToggleButton* modeButton) {
-
-}
-
 GtkWidget* ReportDialog::gobj()
 {
     return m_gobj;
@@ -80,8 +74,12 @@ bool ReportDialog::run()
 
     // }
     gtk_window_destroy(GTK_WINDOW(m_gobj));
-    //return m_controller.getResponse() == "export";
-    return false;
+    return m_controller.getResponse() == "export";
+}
+
+void ReportDialog::onModeChanged(GtkToggleButton* modeButton)
+{
+
 }
 
 void ReportDialog::setResponse(const std::string& response)

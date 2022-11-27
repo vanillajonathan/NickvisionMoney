@@ -20,6 +20,7 @@ executable('org.nickvision.money', sources, dependencies: [threads, adwaita, jso
 install_data(resources, install_dir: 'share/icons/hicolor/scalable/apps')
 install_data(resources_symbolic, install_dir: 'share/icons/hicolor/symbolic/apps')
 install_data(resources_actions, install_dir: 'share/icons/hicolor/scalable/actions')
+install_data(other_resources, install_dir: 'share/org.nickvision.money')
 install_data('org.nickvision.money.desktop', install_dir: 'share/applications')
 install_data('org.nickvision.money.metainfo.xml', install_dir: 'share/metainfo')
 install_data('org.nickvision.money.extension.xml', install_dir: 'share/mime/packages')

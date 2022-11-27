@@ -1,4 +1,5 @@
 #include "pdfdocument.hpp"
+#include <filesystem>
 #include <stdexcept>
 
 using namespace NickvisionMoney::Models;
@@ -6,6 +7,7 @@ using namespace NickvisionMoney::Models;
 PDFDocument::PDFDocument()
 {
     m_handle = HPDF_New([](HPDF_STATUS, HPDF_STATUS, void*){ throw std::runtime_error("PDF Error"); }, nullptr);
+    HPDF_UseUTFEncodings(m_handle);
 }
 
 PDFDocument::~PDFDocument()
@@ -42,4 +44,13 @@ int PDFDocument::addPage(HPDF_PageSizes size, HPDF_PageDirection orientation)
     {
         return -1;
     }
+}
+
+std::string PDFDocument::loadTTFontFromFile(const std::string& path)
+{
+    if(!std::filesystem::exists(path))
+    {
+        return "";
+    }
+    return HPDF_LoadTTFontFromFile(m_handle, path.c_str(), HPDF_TRUE);
 }

@@ -1,9 +1,6 @@
 #pragma once
 
-#include <locale>
-#include <map>
 #include <string>
-#include <vector>
 
 namespace NickvisionMoney::Controllers
 {

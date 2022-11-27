@@ -42,6 +42,13 @@ namespace NickvisionMoney::Models
 		 * @returns The index of the added page. -1 if unable to add page
 		 */
 		int addPage(HPDF_PageSizes size, HPDF_PageDirection orientation);
+		/**
+		 * Loads a true type font from a file
+		 *
+		 * @param path The path of the .ttf file
+		 * @returns The font name
+		 */
+		std::string loadTTFontFromFile(const std::string& path);
 
 	private:
 		HPDF_Doc m_handle;

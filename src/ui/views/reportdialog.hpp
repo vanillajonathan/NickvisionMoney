@@ -51,10 +51,10 @@ namespace NickvisionMoney::UI::Views
 		 */
 		void onModeChanged(GtkToggleButton* modeButton);
 		/**
-	    	 * Sets the response
-	    	 *
-	    	 * @param The new response
-	    	 */
+    	 * Sets the response
+    	 *
+    	 * @param The new response
+    	 */
 		void setResponse(const std::string& response);
  	};
 }
