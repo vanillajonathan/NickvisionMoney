@@ -49,7 +49,7 @@ namespace NickvisionMoney::UI::Views
 		 *
 		 * @param modeButton The button that is clicked to change mode
 		 */
-		void onModeChanged(GtkToggleButton* modeButton);
+		void onModeChanged(GtkWidget* modeButton);
 		/**
     	 * Sets the response
     	 *
