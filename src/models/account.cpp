@@ -397,6 +397,9 @@ bool Account::exportAsPDF(const std::string& path) const
     page1.drawText(20, page1.getHeight() - 70, "Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale));
     page1.drawText(20, page1.getHeight() - 86, "Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale));
     page1.drawLine(0.5, 20, page1.getHeight() - 94, page1.getWidth() - 40);
+    //First Page - Generated Time
+    std::time_t timeNow{ std::time(0) };
+    page1.drawText(16, 16, "Generated: " + std::string(ctime(&timeNow)));
     return pdf.save();
 }
 
