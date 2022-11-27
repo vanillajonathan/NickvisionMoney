@@ -102,7 +102,7 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     gtk_button_set_child(GTK_BUTTON(m_btnReport), m_btnReportContent);
     gtk_widget_add_css_class(m_btnReport, "pill");
     gtk_widget_set_halign(m_btnReport, GTK_ALIGN_CENTER);
-    g_signal_connect(m_btnReport, "clicked", G_CALLBACK((void (*)(GtkButton*, gpointer))[](GtkButton*, gpointer data) { reinterpret_cast<ReportDialog*>(data)->run(); }), this);
+    g_signal_connect(m_btnReport, "clicked", G_CALLBACK((void (*)(GtkButton*, gpointer))[](GtkButton*, gpointer data) { reinterpret_cast<AccountView*>(data)->onReportOpen(); }), this);
     gtk_box_append(GTK_BOX(m_paneBox), m_btnReport);
     //Group Buttons Box
     m_boxButtonsGroups = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
@@ -419,6 +419,13 @@ void AccountView::onAccountInfoChanged()
         adw_status_page_set_description(ADW_STATUS_PAGE(m_pageStatusNoTransactions), _("Add a new transaction or import transactions from a CSV file using the Actions menu in the sidebar."));
     }
     m_isAccountLoading = false;
+}
+
+void AccountView::onReportOpen()
+{
+    ReportDialogController controller;
+    ReportDialog reportDialog{ m_parentWindow, controller };
+    reportDialog.run();
 }
 
 void AccountView::onTransferMoney()
