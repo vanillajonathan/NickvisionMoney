@@ -3,6 +3,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 namespace NickvisionMoney::Helpers::StringHelpers
 {
@@ -26,4 +27,13 @@ namespace NickvisionMoney::Helpers::StringHelpers
 		std::snprintf(buf.get(), size, format.c_str(), args...);
 		return { buf.get(), buf.get() + size - 1 }; // We don't want the '\0' inside
     }
+
+	/**
+	 * Splits a string based on a delimiter
+	 *
+	 * @param s The string to split
+	 * @param delim The delimiter to split on
+	 * @returns A list of the split strings (not including the delimiter in the strings)
+	 */
+    std::vector<std::string> split(const std::string& s, const std::string& delim);
 }

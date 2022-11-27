@@ -14,21 +14,6 @@
 using namespace NickvisionMoney::Helpers;
 using namespace NickvisionMoney::Models;
 
-std::vector<std::string> split(const std::string& s, const std::string& delim)
-{
-    std::vector<std::string> result;
-    size_t last{ 0 };
-    size_t next{ s.find(delim) };
-    while(next != std::string::npos)
-    {
-        result.push_back(s.substr(last, next - last));
-        last = next + delim.length();
-        next = s.find(delim, last);
-    }
-    result.push_back(s.substr(last));
-    return result;
-}
-
 unsigned int stoui(const std::string& str, size_t* idx = nullptr, int base = 10)
 {
     unsigned long ui{ std::stoul(str, idx, base) };
@@ -446,7 +431,7 @@ int Account::importFromCSV(const std::string& path)
         while(getline(file, line))
         {
             //Separate fields by ;
-            std::vector<std::string> fields{ split(line, ";") };
+            std::vector<std::string> fields{ StringHelpers::split(line, ";") };
             if(fields.size() != 10)
             {
                 continue;
@@ -566,3 +551,4 @@ void Account::updateGroupAmounts()
         m_groups.at(qryGetGroupsBalance.getColumn(0).getInt()).setBalance(boost::multiprecision::cpp_dec_float_50(qryGetGroupsBalance.getColumn(1).getString()));
     }
 }
+
