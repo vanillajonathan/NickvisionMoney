@@ -6,7 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <boost/date_time/gregorian/gregorian.hpp>
-#include <hpdf.h>
+#include "pdfdocument.hpp"
 #include "../helpers/moneyhelpers.hpp"
 
 using namespace NickvisionMoney::Helpers;
@@ -361,8 +361,8 @@ boost::multiprecision::cpp_dec_float_50 Account::getTotal() const
 
 bool Account::exportAsPDF(const std::string& path) const
 {
-    bool success{ true };
     std::locale locale{ setlocale(LC_ALL, nullptr) };
+    //Get Symbolic JPEG
     std::string pathToSymbolicIcon;
     if(std::filesystem::exists("/usr/share/icons/hicolor/symbolic/apps/org.nickvision.money-symbolic-green.jpg"))
     {
@@ -376,52 +376,28 @@ bool Account::exportAsPDF(const std::string& path) const
     {
         pathToSymbolicIcon = "org.nickvision.money-symbolic-green.jpg";
     }
-    //Initialize PDF
-    HPDF_Doc pdf{ HPDF_New([](HPDF_STATUS, HPDF_STATUS, void* data){ *reinterpret_cast<bool*>(data) = false; }, &success) };
+    //Write PDF
+    PDFDocument pdf{ path };
     //First Page
-    HPDF_Page page1{ HPDF_AddPage(pdf) };
-    HPDF_Page_SetSize(page1, HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT);
-    HPDF_REAL page1Width{ HPDF_Page_GetWidth(page1) };
-    HPDF_REAL page1Height{ HPDF_Page_GetHeight(page1) };
-    //First Page - Main Box
-    HPDF_Page_SetLineWidth(page1, 0.5);
-    HPDF_Page_Rectangle(page1, 10, 10, page1Width - 20, page1Height - 20);
-    HPDF_Page_Stroke(page1);
-    //First Page - Font
-    HPDF_Font fontTitle{ HPDF_GetFont(pdf, "Helvetica", nullptr) };
-    //First Page - Title
-    HPDF_Page_SetFontAndSize(page1, fontTitle, 11);
-    HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 16, page1Height - 26);
-    HPDF_Page_ShowText(page1, std::filesystem::path(m_path).stem().c_str());
-    HPDF_Page_EndText(page1);
-    //First Page - Icon
-    HPDF_Image imageIcon{ HPDF_LoadJpegImageFromFile(pdf, pathToSymbolicIcon.c_str()) };
-    HPDF_Page_DrawImage(page1, imageIcon, page1Width - 50, page1Height - 46, 32, 32);
-    //First Page - Income
-    HPDF_Page_SetFontAndSize(page1, fontTitle, 9);
-    HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 20, page1Height - 54);
-    HPDF_Page_ShowText(page1, std::string("Income: " + MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale)).c_str());
-    HPDF_Page_EndText(page1);
-    //First Page - Expense
-    HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 20, page1Height - 70);
-    HPDF_Page_ShowText(page1, std::string("Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale)).c_str());
-    HPDF_Page_EndText(page1);
-    //First Page - Total
-    HPDF_Page_BeginText(page1);
-    HPDF_Page_MoveTextPos(page1, 20, page1Height - 86);
-    HPDF_Page_ShowText(page1, std::string("Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale)).c_str());
-    HPDF_Page_EndText(page1);
-    //First Page - Line Under Overview
-    HPDF_Page_SetLineWidth(page1, 0.5);
-    HPDF_Page_Rectangle(page1, 20, page1Height - 94, page1Width - 40, 0);
-    HPDF_Page_Stroke(page1);
-    //Save and Close PDF
-    HPDF_SaveToFile(pdf, path.c_str());
-    HPDF_Free(pdf);
-    return success;
+    int page1Index{ pdf.addPage(HPDF_PAGE_SIZE_LETTER, HPDF_PAGE_PORTRAIT) };
+    if(page1Index == -1)
+    {
+        return false;
+    }
+    PDFPage& page1{ pdf.getPages()[page1Index] };
+    //First Page - Border Box
+    page1.drawRectangle(0.5, 10, 10, page1.getWidth() - 20, page1.getHeight() - 20);
+    //First Page - Title and Icon
+    page1.setFont("Helvetica", 11);
+    page1.drawText(16, page1.getHeight() - 26, std::filesystem::path(m_path).stem());
+    page1.drawJPEG(page1.getWidth() - 50, page1.getHeight() - 46, 32, 32, pathToSymbolicIcon);
+    //First Page - Overview
+    page1.setFont("Helvetica", 9);
+    page1.drawText(20, page1.getHeight() - 54, "Income: " + MoneyHelpers::boostMoneyToLocaleString(getIncome(), locale));
+    page1.drawText(20, page1.getHeight() - 70, "Expense: " + MoneyHelpers::boostMoneyToLocaleString(getExpense(), locale));
+    page1.drawText(20, page1.getHeight() - 86, "Total: " + MoneyHelpers::boostMoneyToLocaleString(getTotal(), locale));
+    page1.drawLine(0.5, 20, page1.getHeight() - 94, page1.getWidth() - 40);
+    return pdf.save();
 }
 
 bool Account::exportAsCSV(const std::string& path) const
