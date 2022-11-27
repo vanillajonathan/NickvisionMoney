@@ -89,6 +89,10 @@ namespace NickvisionMoney::UI::Views
 		 */
 		void onAccountInfoChanged();
 		/**
+		 * Opens Report Dialog
+		 */
+		void onReportOpen();
+		/**
 		 * Occurs when the transfer money to another account menu item is clicked
 		 */
 		void onTransferMoney();

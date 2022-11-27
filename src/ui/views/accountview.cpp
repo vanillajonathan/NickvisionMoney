@@ -1,6 +1,7 @@
 #include "accountview.hpp"
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include "groupdialog.hpp"
+#include "reportdialog.hpp"
 #include "transactiondialog.hpp"
 #include "transferdialog.hpp"
 #include "../controls/messagedialog.hpp"
@@ -101,6 +102,7 @@ AccountView::AccountView(GtkWindow* parentWindow, AdwTabView* parentTabView, Gtk
     gtk_button_set_child(GTK_BUTTON(m_btnReport), m_btnReportContent);
     gtk_widget_add_css_class(m_btnReport, "pill");
     gtk_widget_set_halign(m_btnReport, GTK_ALIGN_CENTER);
+    g_signal_connect(m_btnReport, "clicked", G_CALLBACK((void (*)(GtkButton*, gpointer))[](GtkButton*, gpointer data) { reinterpret_cast<ReportDialog*>(data)->run(); }), this);
     gtk_box_append(GTK_BOX(m_paneBox), m_btnReport);
     //Group Buttons Box
     m_boxButtonsGroups = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
