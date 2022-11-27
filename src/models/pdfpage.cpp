@@ -70,15 +70,15 @@ bool PDFPage::drawText(float x, float y, const std::string& text)
     }
 }
 
-bool PDFPage::drawJPEG(float x, float y, float width, float height, const std::string& pathToJPEG)
+bool PDFPage::drawJPEG(float x, float y, float width, float height, const std::string& path)
 {
-    if(!std::filesystem::exists(pathToJPEG))
+    if(!std::filesystem::exists(path))
     {
         return false;
     }
     try
     {
-        HPDF_Image image{ HPDF_LoadJpegImageFromFile(m_parent, pathToJPEG.c_str()) };
+        HPDF_Image image{ HPDF_LoadJpegImageFromFile(m_parent, path.c_str()) };
         HPDF_Page_DrawImage(m_handle, image, x, y, width, height);
         return true;
     }
