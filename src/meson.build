@@ -70,4 +70,4 @@ resources = files('resources/org.nickvision.money.svg', 'resources/org.nickvisio
 resources_symbolic = files('resources/org.nickvision.money-symbolic.svg', 'resources/org.nickvision.money-symbolic-green.jpg')
 resources_actions = files('resources/bank-symbolic.svg', 'resources/bars-symbolic.svg', 'resources/larger-brush-symbolic.svg', 'resources/money-none-symbolic.svg', 'resources/profit-symbolic.svg', 'resources/wallet2-symbolic.svg')
 gresource = files('resources/org.nickvision.money.gresource.xml')
-other_resources = files('resources/arial.ttf')
+other_resources = files('resources/cantarell.ttf')
