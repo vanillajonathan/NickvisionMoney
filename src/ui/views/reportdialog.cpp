@@ -17,13 +17,18 @@ ReportDialog::ReportDialog(GtkWindow* parent, ReportDialogController& controller
     m_boxMain = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     //Mode Switcher Buttons
     m_btnBalance = gtk_toggle_button_new_with_label(_("Balance"));
-    g_signal_connect(m_btnBalance, "toggled", G_CALLBACK((void (*)(GtkToggleButton*, gpointer))[](GtkToggleButton* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
+    gtk_widget_set_name(m_btnBalance, "btnBalance");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(m_btnBalance), true);
+    g_signal_connect(m_btnBalance, "clicked", G_CALLBACK((void (*)(GtkWidget*, gpointer))[](GtkWidget* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
     m_btnIncome = gtk_toggle_button_new_with_label(_("Income"));
-    g_signal_connect(m_btnIncome, "toggled", G_CALLBACK((void (*)(GtkToggleButton*, gpointer))[](GtkToggleButton* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
+    gtk_widget_set_name(m_btnIncome, "btnIncome");
+    g_signal_connect(m_btnIncome, "clicked", G_CALLBACK((void (*)(GtkWidget*, gpointer))[](GtkWidget* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
     m_btnExpense = gtk_toggle_button_new_with_label(_("Expense"));
-    g_signal_connect(m_btnExpense, "toggled", G_CALLBACK((void (*)(GtkToggleButton*, gpointer))[](GtkToggleButton* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
+    gtk_widget_set_name(m_btnExpense, "btnExpense");
+    g_signal_connect(m_btnExpense, "clicked", G_CALLBACK((void (*)(GtkWidget*, gpointer))[](GtkWidget* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
     m_btnGroups = gtk_toggle_button_new_with_label(_("Groups"));
-    g_signal_connect(m_btnGroups, "toggled", G_CALLBACK((void (*)(GtkToggleButton*, gpointer))[](GtkToggleButton* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
+    gtk_widget_set_name(m_btnGroups, "btnGroups");
+    g_signal_connect(m_btnGroups, "clicked", G_CALLBACK((void (*)(GtkWidget*, gpointer))[](GtkWidget* btn, gpointer data) { reinterpret_cast<ReportDialog*>(data)->onModeChanged(btn); }), this);
     //Mode Switcher
     m_boxSwitcher = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_widget_add_css_class(m_boxSwitcher, "linked");
@@ -77,9 +82,25 @@ bool ReportDialog::run()
     return m_controller.getResponse() == "export";
 }
 
-void ReportDialog::onModeChanged(GtkToggleButton* modeButton)
+void ReportDialog::onModeChanged(GtkWidget* modeButton)
 {
-
+    std::string modeButtonName = gtk_widget_get_name(modeButton);
+    if(modeButtonName.find("Balance") == std::string::npos)
+    {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(m_btnBalance), false);
+    }
+    if(modeButtonName.find("Income") == std::string::npos)
+    {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(m_btnIncome), false);
+    }
+    if(modeButtonName.find("Expense") == std::string::npos)
+    {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(m_btnExpense), false);
+    }
+    if(modeButtonName.find("Groups") == std::string::npos)
+    {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(m_btnGroups), false);
+    }
 }
 
 void ReportDialog::setResponse(const std::string& response)
