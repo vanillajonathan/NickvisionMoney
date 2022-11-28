@@ -395,7 +395,7 @@ bool Account::exportAsPDF(const std::string& path) const
     //First Page - Border Box
     page1.drawRectangle(0.5, 10, 10, page1.getWidth() - 20, page1.getHeight() - 20);
     //First Page - Title and Icon
-    page1.setUTFFont(sourceSansProFont, 11);
+    page1.setUTFFont(sourceSansProFont, 12);
     page1.drawText(16, page1.getHeight() - 26, std::filesystem::path(m_path).stem());
     page1.drawJPEG(page1.getWidth() - 50, page1.getHeight() - 46, 32, 32, pathToSymbolicIcon);
     //First Page - Overview
@@ -406,7 +406,16 @@ bool Account::exportAsPDF(const std::string& path) const
     page1.drawLine(0.5, 20, page1.getHeight() - 94, page1.getWidth() - 40);
     //First Page - Generated Time
     std::time_t timeNow{ std::time(0) };
-    page1.drawText(16, 16, StringHelpers::format(_("Generated: %s"), ctime(&timeNow)));
+    std::string timeNowString{ ctime(&timeNow) };
+    timeNowString.erase(timeNowString.size() - 1, 1);
+    page1.drawText(16, 16, StringHelpers::format(_("Generated: %s"), timeNowString.c_str()));
+    //First Page - Groups
+    std::vector<Group> groups;
+    for(const std::pair<const unsigned int, Group>& pair : getGroups())
+    {
+        groups.push_back(pair.second);
+    }
+    std::sort(groups.begin(), groups.end());
     return pdf.save(path);
 }
 
