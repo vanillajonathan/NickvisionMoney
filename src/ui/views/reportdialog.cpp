@@ -84,6 +84,7 @@ bool ReportDialog::run()
 
 void ReportDialog::onModeChanged(GtkWidget* modeButton)
 {
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(modeButton), true);
     std::string modeButtonName = gtk_widget_get_name(modeButton);
     if(modeButtonName.find("Balance") == std::string::npos)
     {
